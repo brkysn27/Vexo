@@ -5,13 +5,12 @@ const multer = require('multer');
 const bcrypt = require('bcrypt');
 const session = require('express-session');
 const sqlite3 = require('sqlite3').verbose();
+const storageAdapter = require('./storage/storage');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 const __root = __dirname;
 const DB_PATH = path.join(__root, 'database.db');
-const uploadVideoDir = path.join(__root, 'uploads', 'videos');
-const uploadThumbnailDir = path.join(__root, 'uploads', 'thumbnails');
 const publicDir = path.join(__root, 'public');
 
 const MAX_VIDEO_SIZE = 100 * 1024 * 1024;
@@ -32,9 +31,8 @@ const ALLOWED_IMAGE_TYPES = new Set([
   'image/jpg'
 ]);
 
-[uploadVideoDir, uploadThumbnailDir].forEach((dir) => {
-  fs.mkdirSync(dir, { recursive: true });
-});
+fs.mkdirSync(path.join(storageAdapter.storageRoot, 'videos'), { recursive: true });
+fs.mkdirSync(path.join(storageAdapter.storageRoot, 'thumbnails'), { recursive: true });
 
 const db = new sqlite3.Database(DB_PATH, (err) => {
   if (err) {
@@ -208,35 +206,60 @@ async function initializeDatabase() {
   `);
 
   const userCount = await dbGet('SELECT COUNT(*) AS count FROM users');
-  if (userCount.count === 0) {
+  const demoEmail = 'demo@vexo.local';
+  let demoUser = await dbGet('SELECT * FROM users WHERE email = ?', [demoEmail]);
+
+  if (!demoUser) {
     const hashedPassword = await bcrypt.hash('demo123', 10);
-    const demoUser = await dbRun(
+    demoUser = await dbRun(
       'INSERT INTO users (username, email, password_hash, created_at) VALUES (?, ?, ?, ?)',
-      ['Vexo Studio', 'demo@vexo.local', hashedPassword, new Date().toISOString()]
+      ['Vexo Studio', demoEmail, hashedPassword, new Date().toISOString()]
     );
+    demoUser = { id: demoUser.id, username: 'Vexo Studio', email: demoEmail };
+  }
 
-    const demoVideos = [
-      {
-        user_id: demoUser.id,
-        title: 'Neon Sokak Yansımaları',
-        description: 'Şehrin gece ışıkları ve minimal elektronik ritm üzerine özgün bir kısa video deneyimi.',
-        filename: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
-        thumbnail: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=900&q=80',
-        category: 'Teknoloji',
-        views: 1284
-      },
-      {
-        user_id: demoUser.id,
-        title: 'Minimal Studio Akışı',
-        description: 'Sessiz, temiz ve dikkat dağıtmayan üretim süreci için modern içerik odaklı bir bakış.',
-        filename: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm',
-        thumbnail: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80',
-        category: 'Yaratıcılık',
-        views: 639
-      }
-    ];
+  const demoVideos = [
+    {
+      user_id: demoUser.id,
+      title: 'Neon Sokak Yansımaları',
+      description: 'Gece şehrin parlayan yüzeyleri, neon vurgu ve akıcı hareketin altında büyüyen teknoloji temalı bir kısa video.',
+      filename: 'https://samplelib.com/preview/mp4/sample-5s.mp4',
+      thumbnail: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=900&q=80',
+      category: 'Teknoloji',
+      views: 1284
+    },
+    {
+      user_id: demoUser.id,
+      title: 'Minimal Studio Akışı',
+      description: 'Temiz kompozisyon, yumuşak ışık akışı ve yaratıcı üretim sürecini öne çıkaran minimal stüdyo deneyimi.',
+      filename: 'https://samplelib.com/preview/mp4/sample-10s.mp4',
+      thumbnail: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80',
+      category: 'Yaratıcılık',
+      views: 639
+    },
+    {
+      user_id: demoUser.id,
+      title: 'Kinetic Light Pulse',
+      description: 'Enerjik, yüksek kontrastlı ve deneysel bir görsel akış; dinamik ışık desenleri ve zarif teknoloji estetiği.',
+      filename: 'https://samplelib.com/preview/mp4/sample-20s.mp4',
+      thumbnail: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80',
+      category: 'Ritim',
+      views: 482
+    }
+  ];
 
-    for (const video of demoVideos) {
+  const existingDemoVideos = await dbAll('SELECT title FROM videos WHERE user_id = ?', [demoUser.id]);
+  const existingTitles = new Set(existingDemoVideos.map((video) => video.title));
+
+  for (const video of demoVideos) {
+    if (existingTitles.has(video.title)) {
+      await dbRun(
+        `UPDATE videos
+         SET description = ?, filename = ?, thumbnail = ?, category = ?, views = ?
+         WHERE user_id = ? AND title = ?`,
+        [video.description, video.filename, video.thumbnail, video.category, video.views, video.user_id, video.title]
+      );
+    } else {
       await dbRun(
         `INSERT INTO videos (user_id, title, description, filename, thumbnail, category, views, created_at)
          VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
