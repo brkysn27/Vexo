@@ -8,7 +8,6 @@ const sqlite3 = require('sqlite3').verbose();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const HOST = '0.0.0.0';
 const __root = __dirname;
 const DB_PATH = path.join(__root, 'database.db');
 const uploadVideoDir = path.join(__root, 'uploads', 'videos');
@@ -737,7 +736,9 @@ app.get('/api/users/:id', async (req, res) => {
     res.status(500).json({ error: 'Kanal bilgisi alınamadı.' });
   }
 });
-
+app.get('/', (req, res) => {
+  res.sendFile(path.join(publicDir, 'index.html'));
+});
 app.get('*', (req, res, next) => {
   if (req.path.startsWith('/api/')) {
     return next();
@@ -758,8 +759,8 @@ app.use((err, req, res, next) => {
 
 (async () => {
   await initializeDatabase();
-  app.listen(PORT, HOST, () => {
-    console.log(`Vexo çalışıyor: http://${HOST}:${PORT}`);
+  app.listen(PORT, () => {
+    console.log(`Vexo çalışıyor: http://localhost:${PORT}`);
   });
 })();
 
