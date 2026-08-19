@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vexo | Profil</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body data-page="profile">
+    <div class="page-shell">
+      <header class="topbar">
+        <div class="topbar__left">
+          <button class="menu-toggle" aria-label="Menüyü aç/kapat">☰</button>
+          <a href="/" class="brand" aria-label="Vexo anasayfa">
+            <span class="brand__mark">V</span>
+            <span class="brand__text">Vexo</span>
+          </a>
+        </div>
+
+        <div id="auth-nav" class="header-actions"></div>
+      </header>
+
+      <main class="content page-container">
+        <div class="profile-card">
+          <div class="profile-header">
+            <div class="profile-user">
+              <div id="profile-avatar" class="profile-avatar">U</div>
+              <div>
+                <h1 id="profile-username">Yükleniyor...</h1>
+                <div id="profile-date" class="muted"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="profile-stats">
+            <div class="profile-stat">
+              <span>Video sayısı</span>
+              <strong id="videos-count">0</strong>
+            </div>
+            <div class="profile-stat">
+              <span>Abone sayısı</span>
+              <strong id="subscribers-count">0</strong>
+            </div>
+            <div class="profile-stat">
+              <span>Katılım</span>
+              <strong id="member-since">—</strong>
+            </div>
+          </div>
+        </div>
+
+        <section class="profile-card" style="margin-top: 1.2rem;">
+          <div class="section-heading">
+            <h2>Kullanıcının videoları</h2>
+          </div>
+          <div id="profile-videos" class="video-grid"></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

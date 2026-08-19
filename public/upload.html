@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vexo | Video Yükle</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body data-page="upload">
+    <div class="page-shell">
+      <header class="topbar">
+        <div class="topbar__left">
+          <button class="menu-toggle" aria-label="Menüyü aç/kapat">☰</button>
+          <a href="/" class="brand" aria-label="Vexo anasayfa">
+            <span class="brand__mark">V</span>
+            <span class="brand__text">Vexo</span>
+          </a>
+        </div>
+
+        <div id="auth-nav" class="header-actions"></div>
+      </header>
+
+      <main class="content upload-page">
+        <div class="upload-card">
+          <h1>Video yükle</h1>
+          <p class="muted">Yaratıcı içeriklerinizi Vexo topluluğuna ekleyin.</p>
+
+          <form id="upload-form" class="upload-form" enctype="multipart/form-data">
+            <label>
+              Video dosyası
+              <input type="file" name="video" accept="video/mp4,video/webm,video/quicktime,video/x-matroska,video/ogg" required />
+            </label>
+
+            <label>
+              Thumbnail
+              <input type="file" name="thumbnail" accept="image/jpeg,image/png,image/webp,image/jpg" required />
+            </label>
+
+            <label>
+              Başlık
+              <input type="text" name="title" maxlength="120" required />
+            </label>
+
+            <label>
+              Kategori
+              <select name="category">
+                <option value="Genel">Genel</option>
+                <option value="Teknoloji">Teknoloji</option>
+                <option value="Yaratıcılık">Yaratıcılık</option>
+                <option value="Oyun">Oyun</option>
+                <option value="Eğitim">Eğitim</option>
+                <option value="Seyahat">Seyahat</option>
+                <option value="Müzik">Müzik</option>
+              </select>
+            </label>
+
+            <label>
+              Açıklama
+              <textarea name="description" rows="6" maxlength="2000" placeholder="Videonuzu anlatan kısa bir açıklama yazın."></textarea>
+            </label>
+
+            <button type="submit" class="primary-btn">Yükle</button>
+          </form>
+
+          <div id="upload-message" class="form-message" aria-live="polite"></div>
+        </div>
+      </main>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

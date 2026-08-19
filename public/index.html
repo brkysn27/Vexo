@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vexo | Watch. Share. Create.</title>
+    <meta name="description" content="Vexo özgün video paylaşım platformu." />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body data-page="home">
+    <div class="page-shell">
+      <header class="topbar">
+        <div class="topbar__left">
+          <button class="menu-toggle" aria-label="Menüyü aç/kapat">☰</button>
+          <a href="/" class="brand" aria-label="Vexo anasayfa">
+            <span class="brand__mark">V</span>
+            <span class="brand__text">Vexo</span>
+          </a>
+        </div>
+
+        <form class="searchbar" action="/search.html" method="get">
+          <input id="global-search-input" name="q" type="search" placeholder="Videolarda ara" aria-label="Arama" />
+          <button type="submit">Ara</button>
+        </form>
+
+        <div id="auth-nav" class="header-actions"></div>
+        <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Tema değiştir">Açık</button>
+      </header>
+
+      <div class="layout">
+        <aside class="sidebar" id="sidebar">
+          <nav class="sidebar__nav">
+            <a href="/" class="nav-item active"><span>🏠</span> Ana Sayfa</a>
+            <a href="/search.html?q=keşfet" class="nav-item"><span>🔎</span> Keşfet</a>
+            <a href="#" class="nav-item"><span>📺</span> Abonelikler</a>
+            <a href="#" class="nav-item"><span>🕘</span> Geçmiş</a>
+            <a href="#" class="nav-item"><span>👍</span> Beğenilen Videolar</a>
+            <a href="/upload.html" class="nav-item"><span>⬆️</span> Video Yükle</a>
+          </nav>
+        </aside>
+
+        <main class="content">
+          <section class="hero-strip">
+            <div>
+              <p class="eyebrow">Watch. Share. Create.</p>
+              <h1>Yenilikçi içerikleri Vexo’da keşfet.</h1>
+            </div>
+          </section>
+
+          <section class="video-section">
+            <div class="section-heading">
+              <h2>Önerilen videolar</h2>
+            </div>
+            <div id="video-grid" class="video-grid"></div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

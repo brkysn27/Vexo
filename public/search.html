@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vexo | Arama</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body data-page="search">
+    <div class="page-shell">
+      <header class="topbar">
+        <div class="topbar__left">
+          <button class="menu-toggle" aria-label="Menüyü aç/kapat">☰</button>
+          <a href="/" class="brand" aria-label="Vexo anasayfa">
+            <span class="brand__mark">V</span>
+            <span class="brand__text">Vexo</span>
+          </a>
+        </div>
+
+        <form class="searchbar" action="/search.html" method="get">
+          <input id="search-query" name="q" type="search" placeholder="Videolarda ara" aria-label="Arama" />
+          <button type="submit">Ara</button>
+        </form>
+
+        <div id="auth-nav" class="header-actions"></div>
+      </header>
+
+      <main class="content page-container">
+        <section>
+          <div class="section-heading">
+            <h2 id="search-title">Arama sonuçları</h2>
+          </div>
+          <div id="search-results" class="video-grid"></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vexo | Kayıt Ol</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body data-page="register">
+    <div class="auth-shell">
+      <div class="auth-card">
+        <div class="brand auth-brand">
+          <span class="brand__mark">V</span>
+          <span class="brand__text">Vexo</span>
+        </div>
+        <h1>Hesabını oluştur</h1>
+        <p class="muted">İzle, paylaş, üret.</p>
+
+        <form id="register-form" class="auth-form">
+          <label>
+            Kullanıcı adı
+            <input type="text" id="register-username" name="username" required />
+          </label>
+
+          <label>
+            E-posta
+            <input type="email" id="register-email" name="email" required />
+          </label>
+
+          <label>
+            Şifre
+            <input type="password" id="register-password" name="password" required minlength="6" />
+          </label>
+
+          <label>
+            Şifre tekrar
+            <input type="password" id="register-confirm" name="confirmPassword" required minlength="6" />
+          </label>
+
+          <button type="submit" class="primary-btn">Kayıt ol</button>
+        </form>
+
+        <p class="auth-switch">
+          Zaten hesabın var mı?
+          <a href="/login.html">Giriş yap</a>
+        </p>
+        <div id="register-message" class="form-message" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
