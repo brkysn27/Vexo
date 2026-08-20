@@ -126,6 +126,7 @@ body[data-theme="dark"]::after {
   0% {
     transform: translate3d(0, 0, 0) scale(1);
   }
+
   100% {
     transform: translate3d(18px, -14px, 0) scale(1.04);
   }
@@ -136,6 +137,7 @@ body[data-theme="dark"]::after {
     opacity: 0.5;
     transform: scale(0.98);
   }
+
   100% {
     opacity: 0.9;
     transform: scale(1.04);
@@ -160,6 +162,10 @@ video {
   display: block;
 }
 
+/* =========================================
+   ANA YAPI
+   ========================================= */
+
 .page-shell {
   position: relative;
   min-height: 100vh;
@@ -170,10 +176,18 @@ video {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(10, 16, 24, 0.18), rgba(5, 10, 17, 0.38));
+  background: linear-gradient(
+    180deg,
+    rgba(10, 16, 24, 0.18),
+    rgba(5, 10, 17, 0.38)
+  );
   pointer-events: none;
   z-index: -1;
 }
+
+/* =========================================
+   ÜST MENÜ
+   ========================================= */
 
 .topbar {
   position: sticky;
@@ -202,6 +216,8 @@ body[data-theme="dark"] .topbar {
   gap: 0.8rem;
 }
 
+/* VEXO LOGO */
+
 .brand {
   display: inline-flex;
   align-items: center;
@@ -210,21 +226,16 @@ body[data-theme="dark"] .topbar {
   letter-spacing: 0.04em;
 }
 
-.brand__mark {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  border-radius: 12px;
-  background: linear-gradient(135deg, var(--primary), var(--accent));
-  color: #09121a;
-  box-shadow: 0 8px 24px rgba(110, 231, 249, 0.42);
+.brand__text {
+  font-size: 1.45rem;
+  font-weight: 850;
+  letter-spacing: -0.04em;
+  color: var(--text);
 }
 
-.brand__text {
-  font-size: 1.35rem;
-}
+/* =========================================
+   ARAMA
+   ========================================= */
 
 .searchbar {
   flex: 1;
@@ -256,7 +267,10 @@ body[data-theme="dark"] .topbar {
   border: none;
   border-radius: 12px;
   cursor: pointer;
-  transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .searchbar button,
@@ -275,6 +289,10 @@ body[data-theme="dark"] .topbar {
 .nav-item:hover {
   transform: translateY(-1px);
 }
+
+/* =========================================
+   HEADER BUTONLARI
+   ========================================= */
 
 .header-actions {
   display: flex;
@@ -325,6 +343,10 @@ body[data-theme="dark"] .theme-toggle {
   border-radius: 12px;
 }
 
+/* =========================================
+   LAYOUT
+   ========================================= */
+
 .layout {
   display: flex;
   min-height: calc(100vh - 78px);
@@ -349,6 +371,10 @@ body[data-theme="dark"] .sidebar {
   gap: 0.35rem;
 }
 
+/* =========================================
+   MENÜ BUTONLARI
+   ========================================= */
+
 .nav-item {
   display: flex;
   align-items: center;
@@ -365,6 +391,61 @@ body[data-theme="dark"] .sidebar {
   color: var(--text);
 }
 
+/* =========================================
+   VEXO SVG İKONLARI
+   ========================================= */
+
+.nav-icon {
+  width: 1.35rem;
+  height: 1.35rem;
+  flex: 0 0 1.35rem;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  color: currentColor;
+
+  transition:
+    transform 0.2s ease,
+    color 0.2s ease,
+    filter 0.2s ease;
+}
+
+.nav-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Keşfet */
+
+.nav-icon--explore {
+  color: currentColor;
+}
+
+.nav-item:hover .nav-icon--explore {
+  color: var(--primary);
+  transform: scale(1.08);
+}
+
+.nav-item.active .nav-icon--explore {
+  color: var(--primary);
+}
+
+body[data-theme="dark"] .nav-icon--explore {
+  color: currentColor;
+}
+
+body[data-theme="dark"] .nav-item:hover .nav-icon--explore,
+body[data-theme="dark"] .nav-item.active .nav-icon--explore {
+  color: var(--primary);
+}
+
+/* =========================================
+   CONTENT
+   ========================================= */
+
 .content {
   flex: 1;
   padding: 1.4rem;
@@ -375,19 +456,33 @@ body[data-theme="dark"] .sidebar {
   padding: 1.4rem 1.2rem;
   border: 1px solid rgba(15, 118, 110, 0.08);
   border-radius: var(--radius);
+
   background:
-    linear-gradient(135deg, rgba(16, 185, 129, 0.06), rgba(45, 212, 191, 0.08)),
+    linear-gradient(
+      135deg,
+      rgba(16, 185, 129, 0.06),
+      rgba(45, 212, 191, 0.08)
+    ),
     rgba(255, 255, 255, 0.76);
+
   box-shadow: 0 12px 28px rgba(15, 23, 42, 0.05);
   backdrop-filter: blur(8px);
 }
 
 body[data-theme="dark"] .hero-strip {
   border: 1px solid rgba(141, 170, 255, 0.16);
+
   background:
-    linear-gradient(135deg, rgba(110, 231, 249, 0.08), rgba(139, 92, 246, 0.09)),
+    linear-gradient(
+      135deg,
+      rgba(110, 231, 249, 0.08),
+      rgba(139, 92, 246, 0.09)
+    ),
     rgba(15, 24, 35, 0.72);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 18px 38px rgba(9, 12, 18, 0.24);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 18px 38px rgba(9, 12, 18, 0.24);
 }
 
 .eyebrow {
@@ -404,6 +499,10 @@ body[data-theme="dark"] .hero-strip {
   font-size: clamp(1.8rem, 2.2vw, 3rem);
 }
 
+/* =========================================
+   VİDEOLAR
+   ========================================= */
+
 .section-heading {
   display: flex;
   justify-content: space-between;
@@ -418,12 +517,24 @@ body[data-theme="dark"] .hero-strip {
 }
 
 .video-card {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 250, 252, 0.96));
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.96),
+      rgba(248, 250, 252, 0.96)
+    );
+
   border: 1px solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
+
   box-shadow: 0 12px 26px rgba(15, 23, 42, 0.06);
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+
   backdrop-filter: blur(10px);
 }
 
@@ -435,15 +546,26 @@ body[data-theme="dark"] .hero-strip {
 
 body[data-theme="dark"] .video-card {
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01)),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.02),
+      rgba(255, 255, 255, 0.01)
+    ),
     rgba(13, 20, 30, 0.78);
+
   border: 1px solid rgba(255, 255, 255, 0.07);
-  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+
+  box-shadow:
+    0 16px 34px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
 }
 
 body[data-theme="dark"] .video-card:hover {
   border-color: rgba(110, 231, 249, 0.34);
-  box-shadow: 0 18px 38px rgba(12, 18, 30, 0.28), 0 0 0 1px rgba(110, 231, 249, 0.08);
+
+  box-shadow:
+    0 18px 38px rgba(12, 18, 30, 0.28),
+    0 0 0 1px rgba(110, 231, 249, 0.08);
 }
 
 .video-card__thumb {
@@ -468,9 +590,16 @@ body[data-theme="dark"] .video-card:hover {
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--primary), var(--accent));
+
+  background: linear-gradient(
+    135deg,
+    var(--primary),
+    var(--accent)
+  );
+
   color: #081117;
   font-weight: 800;
+
   display: grid;
   place-items: center;
 }
@@ -494,6 +623,10 @@ body[data-theme="dark"] .video-card:hover {
   font-size: 0.88rem;
 }
 
+/* =========================================
+   WATCH SAYFASI
+   ========================================= */
+
 .page-container {
   max-width: 1180px;
   margin: 0 auto;
@@ -512,10 +645,18 @@ body[data-theme="dark"] .video-card:hover {
 .upload-card,
 .auth-card,
 .profile-card {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(248, 250, 252, 0.94));
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.94),
+      rgba(248, 250, 252, 0.94)
+    );
+
   border: 1px solid var(--border);
   border-radius: var(--radius);
+
   box-shadow: 0 12px 26px rgba(15, 23, 42, 0.06);
+
   backdrop-filter: blur(12px);
 }
 
@@ -526,14 +667,26 @@ body[data-theme="dark"] .recommend-panel,
 body[data-theme="dark"] .upload-card,
 body[data-theme="dark"] .auth-card,
 body[data-theme="dark"] .profile-card {
-  background: linear-gradient(180deg, rgba(15, 20, 28, 0.76), rgba(12, 18, 27, 0.86));
+  background:
+    linear-gradient(
+      180deg,
+      rgba(15, 20, 28, 0.76),
+      rgba(12, 18, 27, 0.86)
+    );
+
   border: 1px solid rgba(255, 255, 255, 0.07);
-  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+
+  box-shadow:
+    0 16px 34px rgba(0, 0, 0, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
 }
 
 .player-panel {
   overflow: hidden;
-  box-shadow: 0 18px 38px rgba(7, 10, 16, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+  box-shadow:
+    0 18px 38px rgba(7, 10, 16, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 .video-player {
@@ -576,6 +729,10 @@ body[data-theme="dark"] .profile-card {
   color: var(--primary);
 }
 
+/* =========================================
+   PANELLER
+   ========================================= */
+
 .info-panel,
 .comment-panel,
 .recommend-panel,
@@ -591,10 +748,15 @@ body[data-theme="dark"] .profile-card {
   line-height: 1.7;
 }
 
+/* =========================================
+   YORUMLAR
+   ========================================= */
+
 .comment-list {
   list-style: none;
   margin: 1rem 0 0;
   padding: 0;
+
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
@@ -658,6 +820,10 @@ body[data-theme="dark"] .profile-card {
   min-height: 100px;
 }
 
+/* =========================================
+   GİRİŞ / KAYIT
+   ========================================= */
+
 .auth-shell {
   min-height: 100vh;
   display: grid;
@@ -716,6 +882,10 @@ body[data-theme="dark"] .profile-card {
   color: var(--success);
 }
 
+/* =========================================
+   UPLOAD
+   ========================================= */
+
 .upload-page {
   max-width: 820px;
   margin: 0 auto;
@@ -724,6 +894,10 @@ body[data-theme="dark"] .profile-card {
 .upload-card {
   padding: 1.5rem;
 }
+
+/* =========================================
+   PROFİL
+   ========================================= */
 
 .profile-card {
   margin-top: 1rem;
@@ -747,10 +921,17 @@ body[data-theme="dark"] .profile-card {
   width: 62px;
   height: 62px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--primary), var(--accent));
+
+  background: linear-gradient(
+    135deg,
+    var(--primary),
+    var(--accent)
+  );
+
   color: #081117;
   display: grid;
   place-items: center;
+
   font-size: 1.4rem;
   font-weight: 800;
 }
@@ -775,6 +956,10 @@ body[data-theme="dark"] .profile-card {
   margin-top: 0.2rem;
 }
 
+/* =========================================
+   BOŞ DURUM
+   ========================================= */
+
 .empty-state {
   border: 1px dashed var(--border);
   border-radius: 12px;
@@ -787,15 +972,27 @@ body[data-theme="dark"] .profile-card {
   display: none !important;
 }
 
+/* =========================================
+   MOBİL MENÜ
+   ========================================= */
+
 .menu-toggle {
   display: none;
+
   background: rgba(255, 255, 255, 0.04);
   color: var(--text);
+
   border: 1px solid var(--border);
+
   width: 2.25rem;
   height: 2.25rem;
+
   border-radius: 10px;
 }
+
+/* =========================================
+   TABLET
+   ========================================= */
 
 @media (max-width: 980px) {
   .sidebar {
@@ -804,9 +1001,12 @@ body[data-theme="dark"] .profile-card {
     top: 74px;
     bottom: 0;
     width: 240px;
+
     transform: translateX(-100%);
     transition: transform 0.25s ease;
+
     z-index: 40;
+
     background: rgba(11, 16, 21, 0.96);
   }
 
@@ -823,6 +1023,10 @@ body[data-theme="dark"] .profile-card {
     grid-template-columns: 1fr;
   }
 }
+
+/* =========================================
+   TELEFON
+   ========================================= */
 
 @media (max-width: 640px) {
   .topbar {
@@ -849,5 +1053,123 @@ body[data-theme="dark"] .profile-card {
 
   .hero-strip {
     padding: 1rem;
+  }
+
+  .brand__text {
+    font-size: 1.3rem;
+  }
+}
+/* =========================================
+   VEXO — AÇILIŞ ANİMASYONU
+   ========================================= */
+
+.vexo-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background: #ffffff;
+
+  animation: vexoIntroExit 0.7s ease 1.25s forwards;
+}
+
+.vexo-intro__logo {
+  font-size: clamp(3.5rem, 9vw, 7rem);
+  font-weight: 900;
+  letter-spacing: -0.075em;
+
+  color: #111827;
+
+  opacity: 0;
+  transform: translateY(18px) scale(0.92);
+
+  animation: vexoLogoIn 0.8s cubic-bezier(.2,.8,.2,1) 0.15s forwards;
+}
+
+.vexo-intro__line {
+  width: 0;
+  height: 3px;
+
+  margin-top: 1rem;
+
+  border-radius: 999px;
+
+  background: linear-gradient(
+    90deg,
+    #0f766e,
+    #22c55e,
+    #0f766e
+  );
+
+  box-shadow:
+    0 0 18px rgba(34, 197, 94, 0.35);
+
+  animation: vexoLineIn 0.65s ease 0.55s forwards;
+}
+
+@keyframes vexoLogoIn {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.92);
+    filter: blur(8px);
+  }
+
+  60% {
+    opacity: 1;
+    filter: blur(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes vexoLineIn {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+
+  100% {
+    width: 150px;
+    opacity: 1;
+  }
+}
+
+@keyframes vexoIntroExit {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+/* Sayfa açılırken ana içerik de hafifçe gelsin */
+
+.page-shell {
+  animation: vexoPageIn 0.8s ease 0.9s both;
+}
+
+@keyframes vexoPageIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

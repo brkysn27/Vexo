@@ -1,17 +1,16 @@
-const path = require('path');
-const createLocalStorage = require('./localStorage');
+const path = require("path");
+const fs = require("fs");
 
-const provider = process.env.STORAGE_PROVIDER || 'local';
+const storageRoot = path.join(__dirname);
 
-function createStorage() {
-  if (provider !== 'local') {
-    throw new Error(`Desteklenmeyen STORAGE_PROVIDER: ${provider}`);
-  }
+fs.mkdirSync(path.join(storageRoot, "videos"), {
+  recursive: true
+});
 
-  return createLocalStorage({
-    storageRoot: process.env.LOCAL_STORAGE_ROOT || path.join(__dirname, '..', 'uploads'),
-    publicBasePath: process.env.LOCAL_STORAGE_PUBLIC_PATH || '/uploads'
-  });
-}
+fs.mkdirSync(path.join(storageRoot, "thumbnails"), {
+  recursive: true
+});
 
-module.exports = createStorage();
+module.exports = {
+  storageRoot
+};
